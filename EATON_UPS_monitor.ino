@@ -105,19 +105,23 @@ void doStateOutput() {
     }
   }
 
+  // defaulting to error but hoping this will be overwritten
   String state = "error";
   short value = 0;
 
-  // if a single LED in on we are on mains
   short onCntr = 0;
+  boolean blinkingLeds = false;
   short id = 0;
   for (short i = 0; i < leds; i++) {
     if (states[i] == on) {
       onCntr++;
       id = i;
+    } else if (!blinkingLeds && (states[i] == slow || states[i] == fast)) {
+      blinkingLeds = true;
     }
   }
-  if (onCntr == 1) {
+  // if a single LED is on we are on mains
+  if (onCntr == 1 && !blinkingLeds) {
     state = "normal";
     switch (id) {
       case 0:
