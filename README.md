@@ -1,9 +1,6 @@
 # EATON_MINI_UPS_SMARTIFIER
 Eaton 3S Mini UPS Made Smart 
 
-This repository contains code for my *Eaton 3S Mini UPS Made Smart* project. Check it out: 
-https://www.instructables.com/Eaton-3S-Mini-UPS-Made-Smart/
-
 <img width="100%" src="img/title_1.jpg"><img width="50%" src="img/title_2.jpg"><img width="50%" src="img/title_3.jpg">
 The Eaton 3S Mini UPS is a nice little device to bridge power outages for small devices like router, rasberries, nucs and NAS. There is just one snag: It is dumb. Device state and battery levels are indicated via LEDs only and there is no way to let your home server know that power will be gone in a few minutes and it should power down gracefully.
 
@@ -20,6 +17,9 @@ When we cut power output looks like this:
 {"state":"discharging","value":3}
 ```
 Device is discharging and there is only 3% power left.
+
+
+
 ## Supplies
 <img width="50%" src="img/supplies_1.jpg"><img width="50%" src="img/supplies_2.jpg">
 ### Stuff you need
@@ -36,11 +36,17 @@ soldering iron, solder, heatshrink, scissors, drill, hotglue gun, duct tape, etc
 - You will need to drill a hole into the case so drilling skills are beneficial :)
 - You will need to modify code unless you use an Arduino nano and the same analog inputs as I do
 - You will need some general computer literacy to make use of the UPS status data
+
+
+
 ## Step 1: Open Case, Drill a Hole
 <img width="50%" src="img/case_1.jpg"><img width="50%" src="img/case_2.jpg">
 1. Device is held shut by 4 screws hiding under the rubber feet. pull the feet, unscrew screws.
 2. Remove batteries.
 3. Drill a hole into the case. I made it big enough to fit all 7 wires (4 signal, 1 ground, 2 switch) but ended up not driving the switch so 5 wires is enough if you don't plan to add new functionality. If space is a concern 4 wires should do if common ground is used.
+
+
+
 ## Step 2: Solder Wires to the PCB
 <img width="33%" src="img/pcb_1.jpg"><img width="33%" src="img/pcb_2.jpg"><img width="33%" src="img/pcb_3.jpg">
 1. Solder a wire to every LED. There is a tiny soldering pad next to every LED, I used that. You can solder to the LED directly or its drivers output leg. Check with continuity with multimeter.
@@ -49,11 +55,17 @@ soldering iron, solder, heatshrink, scissors, drill, hotglue gun, duct tape, etc
 4. Fix wires with hot glue.
 5. Put batteries back in place. Check polarity. There is a small + sign on the PCB and on the battery as well for both batteries. However, there is reverse polarity protection in place. I know because I put them in wrong.
 6. Close case.
+
+
+
 ## Step 3: Add Wiring
 <img width="50%" src="img/wiring_1.jpg"><img width="50%" src="img/wiring_2.png">
 1. Connect the 4 LED signals to the microcontroller. If you are cloning my arduino setup check photo for correct wiring order to A0, A1, A2, A3.
 2. Connect ground to Arduino ground. This is optional because you will have a common ground anyway if the controller is powered by the UPS but I needed it for testing and kept it that way
 3. If you followed closely there will be 2 wires left connected to the switch. I did not use them at the end but feel free to enhance functionality. A short button press would allow battery stats reading while charging :)
+
+
+
 ## Step 4: Configure Microcontroller
 This part is specific the to Ardino Nano I used. Most compatible Arduinos will work as well. If you use a different controller you'll need to adapt code.
 
@@ -104,6 +116,9 @@ Possible permutations are:
 - "state":"error" indicates an error: LEDs show a combination which is neither a battery level nor an output voltage. "value" is always 0 for errors.
 - "state":"normal" indicates normal operation. UPS is powered, running and is ready to take over in case power is lost. "value" is 9, 12, 15 or 19 - the current output voltage.
 - "state":"discharging" indicates power loss state. "value" is current battery power level in percent and is one of the following values: 3, 8, 38, 63, 88 and 100 and is a numerical representation of the different LED states.
+
+
+
 ## Step 5: Client Side UPS Status Reading
 A small Python script can read and output UPS data.
 
