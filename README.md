@@ -141,3 +141,10 @@ fk@fiesernuc:~/bin$ python upsmonitor.py /dev/ttyUSB0
 fk@fiesernuc:~/bin$ 
 ```
 Return code will be 0 on successfull readings and 1 on errors.
+
+
+
+## Support my work
+If you have some SATs to spare: 153HHsR9gZdiDTUgzSZks4uuU141zKcsSe
+Or if you prefer a fancy Lightning tip jar: https://coinos.io/Fiesel
+Thanks a lot, your appreciation is what drives me!
