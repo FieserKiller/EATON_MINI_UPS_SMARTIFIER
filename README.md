@@ -70,7 +70,7 @@ soldering iron, solder, heatshrink, scissors, drill, hotglue gun, duct tape, etc
 This part is specific the to Ardino Nano I used. Most compatible Arduinos will work as well. If you use a different controller you'll need to adapt code.
 
 1. Set up Arduino IDE, your board and install ArduinoJson library
-2. Download (EATON_UPS_monitor.ino) and flash to your board
+2. Download EATON_UPS_monitor.ino and flash to your board
 3. Test it: Connect microcontroller to your PC and listen at serial USB at 9600 baud. Status messages should arrive every 5 seconds.
 ### Arduino code details
 My Arduino nano board reads voltages between 0V and 5V, and samples at 10 bit (1024 steps).
